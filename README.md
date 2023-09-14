@@ -23,9 +23,30 @@ Le client tape un code
         ALORS les distributeur affiche un message "code incorrect" 
         ET le compteur d'essai est incrémenté de 1
         SI le compteur de tentative est égal à 3
-        ALORS le distributeur avale la carte
-        Le programme s'arrête
+            ALORS le distributeur avale la carte
+            Le programme s'arrête
         Lancer la demande du code de la carte 
     SINON
         Le code est correct
         Lancer la demande du montant à retirer
+le distributeur affiche un message "demandant de choisir un momant à retirer"
+Le client choisi un montant
+Le processus de vérification de solde du client est lancé
+    SI le montant > Le solde || (ou) le montant > plafond
+        Le retrait est refusé
+        Le distributeur affiche un message
+        Le distributeur relance la demande du montant à retirer
+    SINON
+        Le retrait est autorisé
+        Le processus de vérification de solde du DAB est lancé
+            SI le montant > le solde
+            Le retrait est refusé
+            Le distributeur affiche un message
+        Le distributeur relance la demande du montant à retirer
+    SINON
+            Le retrait est autorisé
+            le distributeur remet le montant choisi
+Le client récupère la carte bancaire du distributeur 
+Le client récupère l'argent du distributeur
+Fin du programme
+``` 

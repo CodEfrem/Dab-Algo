@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>DAB</title>
+</head>
+<body>
+    <h1 align="center">Retrait DAB</h1>
+    <p align="center">
+        Veuillez cliquer sur le bouton ci-dessous pour retirer de l'argent
+    </p>
+    <button onclick="cardChecker()">Commencer</button>
+    <div class="app"></div>
+    <script>
+        // variables
+        const clientBalance = 1200
+        const atmBalance = 1200
+        const passCard = 9513
+ 
+        const app = document.querySelector(".app")
+
+        
+        // Functions
+        /*
+        Type de cartes de l'app :
+        1 : CB Valide
+        2 : CB non valide
+        3 : CB Bloquée
+        */ 
+
+        function cardChecker (){
+            let card = parseInt(prompt('Choisissez une carte : 1, 2 ou 3'))
+            //if (typeof(card)== 'number' && (card <= 3 || card >= 4)){
+                if (card===2 || card != 1) {
+                    if (card===2) {
+                    app.innerText = 'CB Bloquée'
+
+                } else {
+                    app.innerText =  'CB Non valide'
+                
+                }
+            }
+            else {
+                passChecker()
+                app.innerText='CB Valide'
+                
+
+            }
+        }
+        /*
+        * Cette fonction permet de vérifier le code de la carte :
+        * à l'aide d'une boucle nous allons permettre 3 essais
+        * Si un des 3 essais est valide, on met le compte de la boucle
+        * au maximum afin de l'arreter et on lance la fonction pour
+        * choisir le montant à retirer.
+        */
+        function passChecker (){
+            
+            app.innerText = 'CB valide'
+            for (let index = 0; index < 3; index++) {
+                    let passPrompt = parseInt(prompt('Saissisez votre code'))
+                    if(passPrompt===passCard){
+                        index =3 
+                        amountChoice()
+                        
+        } 
+    }
+}
+        function amountChoise(){
+            app.innerText = 'Combien voulez-vous retirer?'
+
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
